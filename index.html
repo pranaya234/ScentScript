@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScentCraft - Affordable Custom Perfumes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Create Your Signature Scent</h1>
+    <span class="subtitle">Now more affordable! Starts at just ₹999</span>
+</header>
+
+<div class="container">
+
+    <div class="step">
+        <div class="step-title">1. Choose a Bottle</div>
+        <div class="options-grid">
+            <div class="option-card" onclick="selectBottle('Classic Square', 0, this)">
+                <img src="https://placehold.co/100x150?text=Square" class="bottle-img" alt="Square">
+                <div class="option-name">Classic Square<br><small>(Free)</small></div>
+            </div>
+            <div class="option-card" onclick="selectBottle('Elegant Round', 0, this)">
+                <img src="https://placehold.co/100x150?text=Round" class="bottle-img" alt="Round">
+                <div class="option-name">Elegant Round<br><small>(Free)</small></div>
+            </div>
+            <div class="option-card" onclick="selectBottle('Vintage Crystal', 199, this)">
+                <img src="https://placehold.co/100x150?text=Vintage" class="bottle-img" alt="Vintage">
+                <div class="option-name">Vintage Crystal<br><small>(+₹199)</small></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">2. Select Quantity</div>
+        <div class="qty-container">
+            <button class="qty-btn" onclick="selectQty(50, 999, this)">50ml<br><b>₹999</b></button>
+            <button class="qty-btn" onclick="selectQty(100, 1699, this)">100ml<br><b>₹1,699</b></button>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">3. Top Notes</div>
+        <div class="options-grid" id="top-notes-container">
+            </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">4. Heart Notes</div>
+        <div class="options-grid" id="middle-notes-container">
+             </div>
+    </div>
+
+    <div class="step">
+        <div class="step-title">5. Base Notes</div>
+        <div class="options-grid" id="base-notes-container">
+             </div>
+    </div>
+
+</div>
+
+<div class="summary-box">
+    <div class="summary-content">
+        <div class="summary-details">
+            <span id="summ-bottle">Bottle: -</span>
+            <span id="summ-qty">Size: -</span>
+            <span id="summ-notes">Notes: 0/3</span>
+        </div>
+        
+        <div class="checkout-area">
+            <div class="price-container">
+                <span class="total-price" id="total-price-inr">₹0</span>
+                <span class="sub-price" id="total-price-usd">($0.00)</span>
+            </div>
+            <button class="order-btn" onclick="checkout()">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
