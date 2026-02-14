@@ -2,22 +2,22 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
-# Bubble Perfume Collection (ScentScript) 🎯
+# Scent Script 🎯
+ScentScript🎯
 ## Basic Details
 
-### Team Name: Pranaya's
+### Team Name: Pranaya's Team
+
 
 ### Team Members
-### Team Members
-- Member 1: Pranaya Rajesh- SCMS SCHOOL OF ENGINEERING AND COLLEGE
+- Member 1: Pranaya R- SCMS SCHOOL OF ENGINEERING AND TECHNOLOGY
 
 
 ### Hosted Project Link
-https://github.com/pranaya234/ScentScript (Add hosted link if deployed)
+https://github.com/pranaya234/ScentScript 
 
 ### Project Description
-ScentScript is a web application that lets users create their own custom perfume. Users can select a perfume type, choose the bottle size, pick fragrance notes, and review their choices in a cart before checkout. The app features a beautiful animated UI for an engaging experience.
+ScentScript is a web application that lets users create their own custom perfume. Users can select a perfume type, choose the bottle size, pick fragrance notes,from the top notes, heart notes and base notes,review their choices in a cart before checkout. The app features a beautiful animated UI for an engaging experience.
 
 ### The Problem statement
 Finding a unique, personalized fragrance is difficult with standard perfume offerings. Users want to customize scents to match their preferences.
@@ -30,7 +30,7 @@ ScentScript provides an interactive platform for users to design their own perfu
 
 ## Project Demo
 ### Video
-Add your demo video link here (YouTube, Google Drive, etc.)
+https://drive.google.com/file/d/18BJliDX9iGej9N9lVXy1sF_C95n_HVLI/view?usp=sharing
 
 *The video should demonstrate perfume selection, size selection, note selection, cart review, and checkout.*
 ## Technical Details
@@ -56,13 +56,8 @@ Add your demo video link here (YouTube, Google Drive, etc.)
 - Animated UI: Floating bubbles, transitions, and interactive elements
 
 ## Team Contributions
-- [Your Name]: UI/UX design, frontend development, documentation
-- [Add more as applicable]
-- Feature 4: [Description]
-
+- [Pranaya R]: UI/UX design, frontend development, documentation
 ---
-
-
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -84,10 +79,10 @@ Open `index.html` in your web browser.
 Not applicable.
 
 #### Components Required
-[List all components needed with specifications]
+Not applicable.
 
 #### Circuit Setup
-[Explain how to set up the circuit]
+Not applicable.
 
 ---
 
@@ -97,23 +92,17 @@ Not applicable.
 
 #### Screenshots (Add at least 3)
 
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot1](screenshot1.png)
+*Webpage where the customer can choose the perfume essence from the given range of perfumes*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot2](screenshot2.png)
+*Webpage where the customers can choose the size of the perfume*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-#### Screenshots
-![Screenshot1](img.png)
-*Landing page with animated bubbles and perfume selection*
+![Screenshot3](screenshot3.png)
+*Webpage where the order summary is shown at the checkout*
 
-![Screenshot2](img.png)
-*Size selection and animated UI*
-
-![Screenshot3](img.png)
-*Cart and checkout summary*
-*Add caption explaining what this shows*
+![Screenshot4](screenshot4.png)
+*Webpage where a pop-up message is shown to confirm the order*
 
 #### Diagrams
 
@@ -134,28 +123,7 @@ User selects perfume → chooses size → picks notes → reviews cart → check
 
 ---
 
-### For Hardware:
 
-#### Schematic & Circuit
-
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-#### Build Photos
-
-![Team](Add photo of your team here)
-
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ---
 
@@ -426,23 +394,5 @@ If you used AI tools during development, document them here for transparency:
 
 ---
 
-## Team Contributions
-
-- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
-- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
-- [Name 3]: [Specific contributions - e.g., UI/UX design, Testing, Documentation, etc.]
-
----
-
-## License
-
-This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LICENSE) file for details.
-
-**Common License Options:**
-- MIT License (Permissive, widely used)
-- Apache 2.0 (Permissive with patent grant)
-- GPL v3 (Copyleft, requires derivative works to be open source)
-
----
 
 Made with ❤️ at TinkerHub
