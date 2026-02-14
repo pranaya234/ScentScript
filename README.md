@@ -14,7 +14,7 @@ ScentScript🎯
 
 
 ### Hosted Project Link
-https://github.com/pranaya234/ScentScript 
+https://scent-script.vercel.app/
 
 ### Project Description
 ScentScript is a web application that lets users create their own custom perfume. Users can select a perfume type, choose the bottle size, pick fragrance notes,from the top notes, heart notes and base notes,review their choices in a cart before checkout. The app features a beautiful animated UI for an engaging experience.
