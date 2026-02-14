@@ -3,71 +3,85 @@
 </p>
 
 # [Project Name] 🎯
-
+# Bubble Perfume Collection (ScentScript) 🎯
 ## Basic Details
 
-### Team Name: [Name]
+### Team Name: Pranaya's
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+### Team Members
+- Member 1: Pranaya Rajesh- SCMS SCHOOL OF ENGINEERING AND COLLEGE
+
 
 ### Hosted Project Link
-[mention your project hosted link here]
+https://github.com/pranaya234/ScentScript (Add hosted link if deployed)
 
 ### Project Description
-[2-3 lines about what your project does]
+ScentScript is a web application that lets users create their own custom perfume. Users can select a perfume type, choose the bottle size, pick fragrance notes, and review their choices in a cart before checkout. The app features a beautiful animated UI for an engaging experience.
 
 ### The Problem statement
-[What problem are you solving?]
+Finding a unique, personalized fragrance is difficult with standard perfume offerings. Users want to customize scents to match their preferences.
 
 ### The Solution
-[How are you solving it?]
+ScentScript provides an interactive platform for users to design their own perfume by selecting from various types, sizes, and fragrance notes, all in a visually appealing web interface.
 
----
+ Not applicable.
 
+
+## Project Demo
+### Video
+Add your demo video link here (YouTube, Google Drive, etc.)
+
+*The video should demonstrate perfume selection, size selection, note selection, cart review, and checkout.*
 ## Technical Details
 
-### Technologies/Components Used
+ No backend/API. All logic is client-side.
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
-
+ 
+- Libraries used: Google Fonts
+ Not applicable.
 **For Hardware:**
-- Main components: [List main components]
-- Specifications: [Technical specifications]
-- Tools required: [List tools needed]
-
+- Not applicable
+ Not applicable.
 ---
+- Fragrance note selection: Select top, heart, and base notes (e.g., Bergamot, Rose, Sandalwood)
+- Cart and checkout: Review selections and confirm order
 
-## Features
+## AI Tools Used
+**Tool Used:** GitHub Copilot
+**Purpose:** UI code suggestions, CSS animation ideas, documentation
+**Percentage of AI-generated code:** ~20%
+**Human Contributions:** UI design, business logic, testing, documentation
+- Animated UI: Floating bubbles, transitions, and interactive elements
 
-List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
+## Team Contributions
+- [Your Name]: UI/UX design, frontend development, documentation
+- [Add more as applicable]
 - Feature 4: [Description]
 
 ---
 
-## Implementation
 
-### For Software:
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 #### Installation
 ```bash
 [Installation commands - e.g., npm install, pip install -r requirements.txt]
 ```
+#### Installation
+No installation required. Just clone/download and open `index.html` in your browser.
 
 #### Run
 ```bash
 [Run commands - e.g., npm start, python app.py]
 ```
+#### Run
+Open `index.html` in your web browser.
 
 ### For Hardware:
+Not applicable.
 
 #### Components Required
 [List all components needed with specifications]
@@ -90,6 +104,15 @@ List the key features of your project:
 *Add caption explaining what this shows*
 
 ![Screenshot3](Add screenshot 3 here with proper name)
+#### Screenshots
+![Screenshot1](img.png)
+*Landing page with animated bubbles and perfume selection*
+
+![Screenshot2](img.png)
+*Size selection and animated UI*
+
+![Screenshot3](img.png)
+*Cart and checkout summary*
 *Add caption explaining what this shows*
 
 #### Diagrams
@@ -103,6 +126,11 @@ List the key features of your project:
 
 ![Workflow](docs/workflow.png)
 *Add caption explaining your workflow*
+**System Architecture:**
+Client-side web app: HTML/CSS/JS, no backend. All logic runs in browser.
+
+**Application Workflow:**
+User selects perfume → chooses size → picks notes → reviews cart → checks out.
 
 ---
 

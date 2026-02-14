@@ -3,83 +3,1207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScentCraft - Affordable Custom Perfumes</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Bubble Perfume Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-gradient-start: #fef5f8;
+            --bg-gradient-mid: #ffeef5;
+            --bg-gradient-end: #fff5fa;
+            --bubble-shine: rgba(255, 255, 255, 0.95);
+            --bubble-shadow: rgba(255, 192, 203, 0.3);
+            --text-primary: #4a4a4a;
+            --text-secondary: #8b7b8b;
+            --accent-pink: #ffc0d9;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-primary);
+        }
+
+        /* Texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 192, 203, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 182, 193, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .stage-title {
+            position: fixed;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2em;
+            font-weight: 300;
+            color: var(--text-primary);
+            letter-spacing: 6px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1.2s forwards 0.5s;
+            z-index: 100;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #4a4a4a 0%, #8b7b8b 50%, #b39eb3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 20px;
+            max-width: 90%;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .bubbles-container {
+            width: 100%;
+            max-width: 1200px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.8s;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            padding: 140px 40px 60px 40px;
+            margin-top: 20px;
+        }
+
+        .bubble {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: 
+                radial-gradient(ellipse at 25% 20%, 
+                    rgba(255, 255, 255, 0.98) 0%, 
+                    rgba(255, 255, 255, 0.85) 8%,
+                    rgba(255, 255, 255, 0.4) 18%,
+                    transparent 35%),
+                radial-gradient(ellipse at 60% 65%,
+                    rgba(255, 245, 250, 0.6) 0%,
+                    rgba(255, 230, 245, 0.4) 25%,
+                    rgba(255, 215, 240, 0.25) 45%,
+                    transparent 65%),
+                radial-gradient(circle at 80% 80%,
+                    rgba(255, 200, 220, 0.3) 0%,
+                    rgba(255, 180, 210, 0.15) 30%,
+                    transparent 60%),
+                linear-gradient(135deg,
+                    rgba(255, 245, 252, 0.35) 0%,
+                    rgba(255, 230, 245, 0.25) 40%,
+                    rgba(255, 215, 240, 0.18) 70%,
+                    rgba(255, 200, 235, 0.12) 100%);
+            box-shadow: 
+                inset -8px -8px 25px rgba(255, 192, 203, 0.12),
+                inset 3px 3px 15px rgba(255, 255, 255, 0.5),
+                inset 0 0 40px rgba(255, 240, 250, 0.2),
+                0 10px 35px rgba(255, 192, 203, 0.22),
+                0 20px 55px rgba(255, 182, 193, 0.15),
+                0 5px 15px rgba(255, 200, 220, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.75),
+                0 0 0 2px rgba(255, 240, 250, 0.15);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: float 6s ease-in-out infinite;
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Enhanced glossy highlights for ultra-realistic bubble effect */
+        .bubble::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            width: 42%;
+            height: 42%;
+            border-radius: 50%;
+            background: 
+                radial-gradient(ellipse at 35% 25%, 
+                    rgba(255, 255, 255, 1) 0%, 
+                    rgba(255, 255, 255, 0.95) 15%,
+                    rgba(255, 255, 255, 0.7) 30%,
+                    rgba(255, 255, 255, 0.4) 50%,
+                    transparent 75%);
+            filter: blur(2px);
+            pointer-events: none;
+            transform: rotate(-15deg);
+        }
+
+        /* Secondary highlight */
+        .bubble::after {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            right: 25%;
+            width: 18%;
+            height: 18%;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.7) 0%, 
+                rgba(255, 255, 255, 0.4) 30%,
+                rgba(255, 255, 255, 0.15) 60%,
+                transparent 80%);
+            filter: blur(4px);
+            pointer-events: none;
+        }
+
+        /* Staggered animation delays */
+        .bubble:nth-child(1) { animation-delay: 0s; }
+        .bubble:nth-child(2) { animation-delay: -2s; }
+        .bubble:nth-child(3) { animation-delay: -4s; }
+        .bubble:nth-child(4) { animation-delay: -1s; }
+        .bubble:nth-child(5) { animation-delay: -3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(1deg); }
+            50% { transform: translateY(-8px) rotate(-1deg); }
+            75% { transform: translateY(-18px) rotate(0.5deg); }
+        }
+
+        .bubble:hover {
+            transform: scale(1.12) translateY(-15px);
+            box-shadow: 
+                inset -10px -10px 30px rgba(255, 192, 203, 0.18),
+                inset 5px 5px 20px rgba(255, 255, 255, 0.7),
+                inset 0 0 50px rgba(255, 240, 250, 0.3),
+                0 15px 45px rgba(255, 192, 203, 0.3),
+                0 25px 70px rgba(255, 182, 193, 0.2),
+                0 8px 20px rgba(255, 200, 220, 0.15),
+                0 0 0 1.5px rgba(255, 255, 255, 0.9),
+                0 0 0 3px rgba(255, 240, 250, 0.2);
+            filter: brightness(1.08);
+        }
+
+        .bubble-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .perfume-bottle {
+            width: 80px;
+            height: 100px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+        }
+
+        .bubble-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .bubble-sublabel {
+            font-size: 0.95em;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Size bubbles - evenly spaced */
+        .size-bubble {
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        #stage2.bubbles-container {
+            gap: 120px;
+        }
+
+        /* Note bubbles */
+        .note-bubble {
+            width: 160px;
+            height: 160px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .note-bubble.selected {
+            transform: scale(1.05);
+            box-shadow: 
+                inset -10px -10px 30px rgba(255, 192, 203, 0.25),
+                inset 5px 5px 20px rgba(255, 255, 255, 0.8),
+                inset 0 0 50px rgba(255, 240, 250, 0.4),
+                0 15px 45px rgba(255, 192, 203, 0.4),
+                0 25px 70px rgba(255, 182, 193, 0.3),
+                0 8px 20px rgba(255, 200, 220, 0.2),
+                0 0 0 3px rgba(255, 150, 180, 0.6),
+                0 0 0 5px rgba(255, 240, 250, 0.3);
+        }
+
+        .note-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .note-name {
+            font-size: 1.1em;
+            font-weight: 400;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart-btn {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            padding: 20px 50px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #fff;
+            background: linear-gradient(135deg, #ff8fab 0%, #ffc0d9 50%, #ff8fab 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 
+                0 10px 30px rgba(255, 143, 171, 0.4),
+                0 5px 15px rgba(255, 192, 217, 0.3);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 150;
+            opacity: 0;
+        }
+
+        .add-to-cart-btn.visible {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateX(-50%) scale(1.05) translateY(-5px);
+            box-shadow: 
+                0 15px 40px rgba(255, 143, 171, 0.5),
+                0 8px 20px rgba(255, 192, 217, 0.4);
+        }
+
+        /* Cart Page */
+        .cart-container {
+            width: 100%;
+            max-width: 900px;
+            padding: 140px 40px 60px 40px;
+            margin: 0 auto;
+        }
+
+        .cart-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 
+                0 20px 60px rgba(255, 192, 203, 0.2),
+                0 10px 30px rgba(255, 182, 193, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 240, 250, 0.5);
+        }
+
+        .cart-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255, 192, 203, 0.2);
+        }
+
+        .cart-item-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .cart-item-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .notes-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 400px;
+            justify-content: flex-end;
+        }
+
+        .note-tag {
+            background: linear-gradient(135deg, rgba(255, 192, 203, 0.3), rgba(255, 240, 250, 0.4));
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1em;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 192, 203, 0.3);
+        }
+
+        .cart-total {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 143, 171, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+        }
+
+        .total-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ff8fab;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(135deg, #ff8fab 0%, #ffc0d9 50%, #ff8fab 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 
+                0 10px 30px rgba(255, 143, 171, 0.4),
+                0 5px 15px rgba(255, 192, 217, 0.3);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .checkout-btn:hover {
+            transform: scale(1.03) translateY(-3px);
+            box-shadow: 
+                0 15px 40px rgba(255, 143, 171, 0.5),
+                0 8px 20px rgba(255, 192, 217, 0.4);
+        }
+
+        /* Checkout Page */
+        .checkout-container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 140px 40px 60px 40px;
+            margin: 0 auto;
+        }
+
+        .checkout-summary {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 
+                0 20px 60px rgba(255, 192, 203, 0.2),
+                0 10px 30px rgba(255, 182, 193, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 240, 250, 0.5);
+        }
+
+        .summary-section {
+            margin-bottom: 40px;
+        }
+
+        .summary-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid rgba(255, 192, 203, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .product-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 240, 250, 0.3), rgba(255, 225, 240, 0.2));
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .product-icon {
+            font-size: 4em;
+        }
+
+        .product-details {
+            text-align: left;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .product-size {
+            font-size: 1.3em;
+            color: var(--text-secondary);
+        }
+
+        .confirm-btn {
+            width: 100%;
+            padding: 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(135deg, #7ed321 0%, #b8e986 50%, #7ed321 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 
+                0 10px 30px rgba(126, 211, 33, 0.4),
+                0 5px 15px rgba(184, 233, 134, 0.3);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-top: 30px;
+        }
+
+        .confirm-btn:hover {
+            transform: scale(1.03) translateY(-3px);
+            box-shadow: 
+                0 15px 40px rgba(126, 211, 33, 0.5),
+                0 8px 20px rgba(184, 233, 134, 0.4);
+        }
+
+        .notes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        /* Zoom into bubble animation */
+        .zoom-target {
+            position: fixed !important;
+            z-index: 1000;
+            transition: all 1.2s cubic-bezier(0.76, 0, 0.24, 1) !important;
+        }
+
+        .zooming-in-effect {
+            transform: translate(-50%, -50%) scale(15) !important;
+            opacity: 0 !important;
+            left: 50% !important;
+            top: 50% !important;
+        }
+
+        .fade-others {
+            opacity: 0 !important;
+            transition: opacity 0.6s ease !important;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .stage-fade-in {
+            animation: zoomIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Scroll hint for notes */
+        .scroll-hint {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            opacity: 0;
+            animation: fadeInBounce 2s ease-in-out infinite 1s;
+        }
+
+        @keyframes fadeInBounce {
+            0%, 100% { opacity: 0; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.7; transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .notes-section {
+            width: 100%;
+            max-width: 1400px;
+            padding: 40px;
+        }
+
+        .notes-category {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .notes-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .notes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        /* Back button */
+        .back-button {
+            position: fixed;
+            top: 35px;
+            left: 40px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(255, 192, 203, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: var(--text-primary);
+            box-shadow: 0 5px 20px rgba(255, 192, 203, 0.2);
+            transition: all 0.3s ease;
+            z-index: 200;
+            opacity: 0;
+        }
+
+        .back-button.visible {
+            opacity: 1;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 240, 245, 1);
+            box-shadow: 0 8px 30px rgba(255, 192, 203, 0.3);
+        }
+    </style>
 </head>
 <body>
-
-<header>
-    <h1>Create Your Signature Scent</h1>
-    <span class="subtitle">Now more affordable! Starts at just ₹999</span>
-</header>
-
-<div class="container">
-
-    <div class="step">
-        <div class="step-title">1. Choose a Bottle</div>
-        <div class="options-grid">
-            <div class="option-card" onclick="selectBottle('Classic Square', 0, this)">
-                <img src="https://placehold.co/100x150?text=Square" class="bottle-img" alt="Square">
-                <div class="option-name">Classic Square<br><small>(Free)</small></div>
+    <button class="back-button" id="backButton" onclick="goBack()">←</button>
+    <div class="stage-title" id="stageTitle">Choose Your Essence</div>
+    <button class="add-to-cart-btn" id="addToCartBtn" onclick="goToCart()">Add to Cart</button>
+    
+    <div class="container" id="mainContainer">
+        <!-- Stage 1: Perfume Selection -->
+        <div class="bubbles-container" id="stage1">
+            <div class="bubble" onclick="selectPerfume('Rose Garden', '🌹')">
+                <div class="bubble-content">
+                    <div class="perfume-bottle">🌹</div>
+                    <div class="bubble-label">Rose Garden</div>
+                    <div class="bubble-sublabel">Floral Elegance</div>
+                </div>
             </div>
-            <div class="option-card" onclick="selectBottle('Elegant Round', 0, this)">
-                <img src="https://placehold.co/100x150?text=Round" class="bottle-img" alt="Round">
-                <div class="option-name">Elegant Round<br><small>(Free)</small></div>
+            <div class="bubble" onclick="selectPerfume('Ocean Breeze', '🌊')">
+                <div class="bubble-content">
+                    <div class="perfume-bottle">🌊</div>
+                    <div class="bubble-label">Ocean Breeze</div>
+                    <div class="bubble-sublabel">Fresh Aquatic</div>
+                </div>
             </div>
-            <div class="option-card" onclick="selectBottle('Vintage Crystal', 199, this)">
-                <img src="https://placehold.co/100x150?text=Vintage" class="bottle-img" alt="Vintage">
-                <div class="option-name">Vintage Crystal<br><small>(+₹199)</small></div>
+            <div class="bubble" onclick="selectPerfume('Vanilla Dream', '✨')">
+                <div class="bubble-content">
+                    <div class="perfume-bottle">✨</div>
+                    <div class="bubble-label">Vanilla Dream</div>
+                    <div class="bubble-sublabel">Sweet Warmth</div>
+                </div>
+            </div>
+            <div class="bubble" onclick="selectPerfume('Citrus Bloom', '🍊')">
+                <div class="bubble-content">
+                    <div class="perfume-bottle">🍊</div>
+                    <div class="bubble-label">Citrus Bloom</div>
+                    <div class="bubble-sublabel">Zesty Bright</div>
+                </div>
+            </div>
+            <div class="bubble" onclick="selectPerfume('Midnight Musk', '🌙')">
+                <div class="bubble-content">
+                    <div class="perfume-bottle">🌙</div>
+                    <div class="bubble-label">Midnight Musk</div>
+                    <div class="bubble-sublabel">Deep Mystery</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 2: Size Selection -->
+        <div class="bubbles-container hidden" id="stage2">
+            <div class="bubble size-bubble" onclick="selectSize('50ml')">
+                <div class="bubble-content">
+                    <div class="bubble-label">50ml</div>
+                    <div class="bubble-sublabel">Perfect Travel</div>
+                </div>
+            </div>
+            <div class="bubble size-bubble" onclick="selectSize('100ml')">
+                <div class="bubble-content">
+                    <div class="bubble-label">100ml</div>
+                    <div class="bubble-sublabel">Signature Size</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 3: Notes Selection -->
+        <div class="notes-section hidden" id="stage3">
+            <div class="notes-category" id="topNotes">
+                <h2 class="category-title">Top Notes</h2>
+                <div class="notes-grid">
+                    <div class="bubble note-bubble" data-note="Bergamot" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🍋</div>
+                            <div class="note-name">Bergamot</div>
+                        </div>
+                    </div>
+                    <div class="bubble note-bubble" data-note="Neroli" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🌸</div>
+                            <div class="note-name">Neroli</div>
+                        </div>
+                    </div>
+                    <div class="bubble note-bubble" data-note="Green Tea" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🍃</div>
+                            <div class="note-name">Green Tea</div>
+                        </div>
+                    </div>
+                    <div class="bubble note-bubble" data-note="Peach" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🍑</div>
+                            <div class="note-name">Peach</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-category" id="middleNotes">
+                <h2 class="category-title">Heart Notes</h2>
+                <div class="notes-grid">
+                    <div class="bubble note-bubble" data-note="Rose" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🌹</div>
+                            <div class="note-name">Rose</div>
+                        </div>
+                    </div>
+                    <div class="bubble note-bubble" data-note="Jasmine" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🌺</div>
+                            <div class="note-name">Jasmine</div>
+                        </div>
+                    </div>
+                    <div class="bubble note-bubble" data-note="Ylang-Ylang" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🌼</div>
+                            <div class="note-name">Ylang-Ylang</div>
+                        </div>
+                    </div>
+                    <div class="bubble note-bubble" data-note="Lavender" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🪻</div>
+                            <div class="note-name">Lavender</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-category" id="baseNotes">
+                <h2 class="category-title">Base Notes</h2>
+                <div class="notes-grid">
+                    <div class="bubble note-bubble" data-note="Sandalwood" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🌰</div>
+                            <div class="note-name">Sandalwood</div>
+                        </div>
+                    </div>
+                    <div class="bubble note-bubble" data-note="Amber" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🍯</div>
+                            <div class="note-name">Amber</div>
+                        </div>
+                    </div>
+                    <div class="bubble note-bubble" data-note="Vetiver" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🌿</div>
+                            <div class="note-name">Vetiver</div>
+                        </div>
+                    </div>
+                    <div class="bubble note-bubble" data-note="Musk" onclick="toggleNote(this)">
+                        <div class="bubble-content">
+                            <div class="note-icon">🤎</div>
+                            <div class="note-name">Musk</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 4: Cart -->
+        <div class="cart-container hidden" id="stage4">
+            <div class="cart-card">
+                <h2 class="cart-title">Your Cart</h2>
+                
+                <div class="cart-item">
+                    <span class="cart-item-label">Perfume Type</span>
+                    <span class="cart-item-value" id="cartPerfume">-</span>
+                </div>
+
+                <div class="cart-item">
+                    <span class="cart-item-label">Size</span>
+                    <span class="cart-item-value" id="cartSize">-</span>
+                </div>
+
+                <div class="cart-item">
+                    <span class="cart-item-label">Selected Notes</span>
+                    <div class="notes-list" id="cartNotes"></div>
+                </div>
+
+                <div class="cart-total">
+                    <span class="total-label">Total</span>
+                    <span class="total-price" id="totalPrice">$0</span>
+                </div>
+
+                <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
+            </div>
+        </div>
+
+        <!-- Stage 5: Checkout -->
+        <div class="checkout-container hidden" id="stage5">
+            <div class="checkout-summary">
+                <h2 class="cart-title">Order Summary</h2>
+                
+                <div class="summary-section">
+                    <h3 class="summary-heading">Your Custom Perfume</h3>
+                    <div class="product-visual">
+                        <div class="product-icon" id="checkoutIcon">🌹</div>
+                        <div class="product-details">
+                            <div class="product-name" id="checkoutPerfume">Rose Garden</div>
+                            <div class="product-size" id="checkoutSize">50ml</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3 class="summary-heading">Fragrance Notes</h3>
+                    <div class="cart-item">
+                        <span class="cart-item-label">Selected Notes</span>
+                        <div class="notes-list" id="checkoutNotes"></div>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <div class="cart-total">
+                        <span class="total-label">Total Amount</span>
+                        <span class="total-price" id="checkoutPrice">$0</span>
+                    </div>
+                </div>
+
+                <button class="confirm-btn" onclick="confirmOrder()">Confirm Order</button>
             </div>
         </div>
     </div>
 
-    <div class="step">
-        <div class="step-title">2. Select Quantity</div>
-        <div class="qty-container">
-            <button class="qty-btn" onclick="selectQty(50, 999, this)">50ml<br><b>₹999</b></button>
-            <button class="qty-btn" onclick="selectQty(100, 1699, this)">100ml<br><b>₹1,699</b></button>
-        </div>
-    </div>
+    <div class="scroll-hint hidden" id="scrollHint">↓ Scroll to explore notes ↓</div>
 
-    <div class="step">
-        <div class="step-title">3. Top Notes</div>
-        <div class="options-grid" id="top-notes-container">
-            </div>
-    </div>
-
-    <div class="step">
-        <div class="step-title">4. Heart Notes</div>
-        <div class="options-grid" id="middle-notes-container">
-             </div>
-    </div>
-
-    <div class="step">
-        <div class="step-title">5. Base Notes</div>
-        <div class="options-grid" id="base-notes-container">
-             </div>
-    </div>
-
-</div>
-
-<div class="summary-box">
-    <div class="summary-content">
-        <div class="summary-details">
-            <span id="summ-bottle">Bottle: -</span>
-            <span id="summ-qty">Size: -</span>
-            <span id="summ-notes">Notes: 0/3</span>
-        </div>
+    <script>
+        let currentStage = 1;
+        let selectedPerfume = '';
+        let selectedPerfumeIcon = '';
+        let selectedSize = '';
+        let selectedNotes = [];
         
-        <div class="checkout-area">
-            <div class="price-container">
-                <span class="total-price" id="total-price-inr">₹0</span>
-                <span class="sub-price" id="total-price-usd">($0.00)</span>
-            </div>
-            <button class="order-btn" onclick="checkout()">Add to Cart</button>
-        </div>
-    </div>
-</div>
+        // Pricing
+        const basePrices = {
+            '50ml': 75,
+            '100ml': 120
+        };
+        const notePrice = 5; // $5 per note
 
-<script src="script.js"></script>
+        function updateTitle(text) {
+            const title = document.getElementById('stageTitle');
+            title.style.opacity = '0';
+            setTimeout(() => {
+                title.textContent = text;
+                title.style.opacity = '1';
+            }, 300);
+        }
 
+        function updateBackButton() {
+            const backBtn = document.getElementById('backButton');
+            if (currentStage > 1 && currentStage < 5) {
+                backBtn.classList.add('visible');
+            } else {
+                backBtn.classList.remove('visible');
+            }
+        }
+
+        function updateAddToCartButton() {
+            const addBtn = document.getElementById('addToCartBtn');
+            if (currentStage === 3 && selectedNotes.length > 0) {
+                addBtn.classList.add('visible');
+            } else {
+                addBtn.classList.remove('visible');
+            }
+        }
+
+        function calculateTotal() {
+            const basePrice = basePrices[selectedSize] || 0;
+            const notesTotal = selectedNotes.length * notePrice;
+            return basePrice + notesTotal;
+        }
+
+        function selectPerfume(name, icon) {
+            if (currentStage !== 1) return;
+            
+            selectedPerfume = name;
+            selectedPerfumeIcon = icon;
+            const clickedBubble = event.currentTarget;
+            const stage1 = document.getElementById('stage1');
+            const stage2 = document.getElementById('stage2');
+            const allBubbles = stage1.querySelectorAll('.bubble');
+            
+            allBubbles.forEach(bubble => {
+                if (bubble !== clickedBubble) {
+                    bubble.classList.add('fade-others');
+                }
+            });
+            
+            clickedBubble.classList.add('zoom-target');
+            updateTitle(`${icon} ${name}`);
+            
+            setTimeout(() => {
+                clickedBubble.classList.add('zooming-in-effect');
+            }, 100);
+            
+            setTimeout(() => {
+                stage1.classList.add('hidden');
+                stage2.classList.remove('hidden');
+                stage2.classList.add('stage-fade-in');
+                currentStage = 2;
+                updateBackButton();
+                updateTitle('Choose Your Size');
+                
+                clickedBubble.classList.remove('zoom-target', 'zooming-in-effect');
+                allBubbles.forEach(bubble => bubble.classList.remove('fade-others'));
+            }, 1200);
+        }
+
+        function selectSize(size) {
+            if (currentStage !== 2) return;
+            
+            selectedSize = size;
+            const clickedBubble = event.currentTarget;
+            const stage2 = document.getElementById('stage2');
+            const stage3 = document.getElementById('stage3');
+            const scrollHint = document.getElementById('scrollHint');
+            const allBubbles = stage2.querySelectorAll('.bubble');
+            
+            allBubbles.forEach(bubble => {
+                if (bubble !== clickedBubble) {
+                    bubble.classList.add('fade-others');
+                }
+            });
+            
+            clickedBubble.classList.add('zoom-target');
+            updateTitle(`${selectedPerfume} - ${size}`);
+            
+            setTimeout(() => {
+                clickedBubble.classList.add('zooming-in-effect');
+            }, 100);
+            
+            setTimeout(() => {
+                stage2.classList.add('hidden');
+                stage3.classList.remove('hidden');
+                currentStage = 3;
+                updateBackButton();
+                updateTitle('Discover the Notes');
+                scrollHint.classList.remove('hidden');
+                
+                clickedBubble.classList.remove('zoom-target', 'zooming-in-effect');
+                allBubbles.forEach(bubble => bubble.classList.remove('fade-others'));
+                
+                observeNotes();
+            }, 1200);
+        }
+
+        function toggleNote(bubble) {
+            const noteName = bubble.getAttribute('data-note');
+            
+            if (bubble.classList.contains('selected')) {
+                bubble.classList.remove('selected');
+                selectedNotes = selectedNotes.filter(note => note !== noteName);
+            } else {
+                bubble.classList.add('selected');
+                selectedNotes.push(noteName);
+            }
+            
+            updateAddToCartButton();
+        }
+
+        function goToCart() {
+            const stage3 = document.getElementById('stage3');
+            const stage4 = document.getElementById('stage4');
+            const scrollHint = document.getElementById('scrollHint');
+            
+            stage3.style.opacity = '0';
+            scrollHint.classList.add('hidden');
+            
+            setTimeout(() => {
+                stage3.classList.add('hidden');
+                stage3.style.opacity = '1';
+                stage4.classList.remove('hidden');
+                stage4.style.opacity = '0';
+                
+                // Update cart display
+                document.getElementById('cartPerfume').textContent = selectedPerfume;
+                document.getElementById('cartSize').textContent = selectedSize;
+                
+                const notesContainer = document.getElementById('cartNotes');
+                notesContainer.innerHTML = '';
+                selectedNotes.forEach(note => {
+                    const tag = document.createElement('span');
+                    tag.className = 'note-tag';
+                    tag.textContent = note;
+                    notesContainer.appendChild(tag);
+                });
+                
+                const total = calculateTotal();
+                document.getElementById('totalPrice').textContent = `$${total}`;
+                
+                setTimeout(() => {
+                    stage4.style.opacity = '1';
+                }, 100);
+                
+                currentStage = 4;
+                updateBackButton();
+                updateAddToCartButton();
+                updateTitle('Shopping Cart');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 600);
+        }
+
+        function goToCheckout() {
+            const stage4 = document.getElementById('stage4');
+            const stage5 = document.getElementById('stage5');
+            
+            stage4.style.opacity = '0';
+            
+            setTimeout(() => {
+                stage4.classList.add('hidden');
+                stage4.style.opacity = '1';
+                stage5.classList.remove('hidden');
+                stage5.style.opacity = '0';
+                
+                // Update checkout display
+                document.getElementById('checkoutIcon').textContent = selectedPerfumeIcon;
+                document.getElementById('checkoutPerfume').textContent = selectedPerfume;
+                document.getElementById('checkoutSize').textContent = selectedSize;
+                
+                const notesContainer = document.getElementById('checkoutNotes');
+                notesContainer.innerHTML = '';
+                selectedNotes.forEach(note => {
+                    const tag = document.createElement('span');
+                    tag.className = 'note-tag';
+                    tag.textContent = note;
+                    notesContainer.appendChild(tag);
+                });
+                
+                const total = calculateTotal();
+                document.getElementById('checkoutPrice').textContent = `$${total}`;
+                
+                setTimeout(() => {
+                    stage5.style.opacity = '1';
+                }, 100);
+                
+                currentStage = 5;
+                updateBackButton();
+                updateTitle('Checkout');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 600);
+        }
+
+        function confirmOrder() {
+            alert(`Thank you for your order!\n\nPerfume: ${selectedPerfume}\nSize: ${selectedSize}\nNotes: ${selectedNotes.join(', ')}\nTotal: $${calculateTotal()}\n\nYour custom perfume will be crafted with care!`);
+            
+            // Reset and go back to start
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        }
+
+        function observeNotes() {
+            const categories = document.querySelectorAll('.notes-category');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            categories.forEach(category => {
+                observer.observe(category);
+            });
+
+            setTimeout(() => {
+                categories[0].classList.add('visible');
+            }, 400);
+        }
+
+        function goBack() {
+            if (currentStage === 2) {
+                const stage1 = document.getElementById('stage1');
+                const stage2 = document.getElementById('stage2');
+                
+                stage2.style.opacity = '0';
+                
+                setTimeout(() => {
+                    stage2.classList.add('hidden');
+                    stage2.style.opacity = '1';
+                    stage2.classList.remove('stage-fade-in');
+                    stage1.classList.remove('hidden');
+                    stage1.classList.add('stage-fade-in');
+                    currentStage = 1;
+                    updateBackButton();
+                    updateTitle('Choose Your Essence');
+                    selectedPerfume = '';
+                    selectedPerfumeIcon = '';
+                }, 600);
+            } else if (currentStage === 3) {
+                const stage2 = document.getElementById('stage2');
+                const stage3 = document.getElementById('stage3');
+                const scrollHint = document.getElementById('scrollHint');
+                
+                stage3.style.opacity = '0';
+                scrollHint.classList.add('hidden');
+                
+                setTimeout(() => {
+                    stage3.classList.add('hidden');
+                    stage3.style.opacity = '1';
+                    document.querySelectorAll('.notes-category').forEach(cat => {
+                        cat.classList.remove('visible');
+                    });
+                    // Clear note selections
+                    document.querySelectorAll('.note-bubble').forEach(bubble => {
+                        bubble.classList.remove('selected');
+                    });
+                    selectedNotes = [];
+                    
+                    stage2.classList.remove('hidden');
+                    stage2.classList.add('stage-fade-in');
+                    currentStage = 2;
+                    updateBackButton();
+                    updateAddToCartButton();
+                    updateTitle('Choose Your Size');
+                    selectedSize = '';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 600);
+            } else if (currentStage === 4) {
+                const stage3 = document.getElementById('stage3');
+                const stage4 = document.getElementById('stage4');
+                
+                stage4.style.opacity = '0';
+                
+                setTimeout(() => {
+                    stage4.classList.add('hidden');
+                    stage4.style.opacity = '1';
+                    stage3.classList.remove('hidden');
+                    stage3.style.opacity = '1';
+                    currentStage = 3;
+                    updateBackButton();
+                    updateAddToCartButton();
+                    updateTitle('Discover the Notes');
+                    document.getElementById('scrollHint').classList.remove('hidden');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 600);
+            }
+        }
+    </script>
 </body>
 </html>
